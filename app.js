@@ -33,9 +33,9 @@ app.post('/webhook', (req, res) => {
             console.log(entry.messaging) // Show incoming message
 
             // Loop through all the messages
-            entry.messaging.forEach( msg => {
-                if (msg.message) {
-                    receivedMessage(msg.message)
+            entry.messaging.forEach( incomingMsg => {
+                if (incomingMsg.message) {
+                    receivedMessage(incomingMsg) // Parse the received message
                 } else {
                     console.log("Webhook received unknown event", msg)
                 }
@@ -65,12 +65,29 @@ let callSendApi = messageData => {
       })
 }
 
-let sendTextMessage = messageText => {
-    let messageData = { message: messageText }
+let sendTextMessage = (recipientId, messageText) => {
+    let messageData = {
+        recipient: {id: recipientId},
+        message: {text: messageText}
+    }
     callSendApi(messageData)
 }
 
-let receivedMessage = message => console.log(`Message received : ${message.text}`)
+let receivedMessage = incomingMsg => {
 
+    // We received a message from the user
+    // We're just going to send it back for testing purposes
+
+    let userId      = incomingMsg.sender.id // We retrieve the user's id so we can send the message back to them
+    let recipientId = incomingMsg.recipient.id
+    let timeOfMsg   = incomingMsg.timestamp
+    let messageText = incomingMsg.text
+
+    if (messageText) {
+        sendTextMessage(userId, messageText) // send the message back to the user
+    }
+
+    // console.log(`Message received : ${message.text}`)
+}
 
 app.listen(port, () => console.log(`server listening on port ${port}`))
