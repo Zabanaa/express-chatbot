@@ -81,13 +81,8 @@ let receivedMessage = incomingMsg => {
     let userId      = incomingMsg.sender.id // We retrieve the user's id so we can send the message back to them
     let recipientId = incomingMsg.recipient.id
     let timeOfMsg   = incomingMsg.timestamp
-    let messageText = incomingMsg.text
-
-    if (messageText) {
-        sendTextMessage(userId, messageText) // send the message back to the user
-    }
-
-    // console.log(`Message received : ${message.text}`)
+    let messageText = incomingMsg.message.text
+    sendTextMessage(userId, messageText) // send the message back to the user
 }
 
 app.listen(port, () => console.log(`server listening on port ${port}`))
