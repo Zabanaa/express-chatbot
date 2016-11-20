@@ -5,7 +5,7 @@ const request           = require('request')
 const bodyParser        = require('body-parser')
 const app               = express()
 const port              = process.env.PORT || 3000
-const PAGE_ACCESS_TOKEN = require('./creds').token
+const PAGE_ACCESS_TOKEN = require('./creds').token || process.env.TOKEN
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
