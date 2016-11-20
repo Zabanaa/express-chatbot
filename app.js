@@ -9,4 +9,6 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => res.send("Hello Bruv"))
 
+app.get('/webhook', (req, res) => res.send("Hello Bruv"))
+
 app.listen(port, () => console.log(`server listening on port ${port}`))
