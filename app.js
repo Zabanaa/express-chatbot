@@ -5,7 +5,7 @@ const request           = require('request')
 const bodyParser        = require('body-parser')
 const app               = express()
 const port              = process.env.PORT || 3000
-const PAGE_ACCESS_TOKEN = "EAAIIMpAi0IoBAFFZAZAMZCOuevxV6ykLeBTjIkG0Pwqc1XhDXGZBRKYlzXZBZAj75RgksmbcO3dSESIWQd2qBM1OunrkiPMiLgVk8JCGCFALUZCdlfgJCb7jUiRgCUsSlBhQUE1mhsOLA5e1im7m4uya8kdEIyRdSaZCAFI1qJ5F4AZDZD"
+const PAGE_ACCESS_TOKEN = require('./creds').token
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
