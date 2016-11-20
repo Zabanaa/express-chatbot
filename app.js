@@ -23,13 +23,14 @@ app.get('/webhook', (req, res) => {
 app.post('/webhook', (req, res) => {
 
     let data = req.body // What the user sends to the server
-    console.log(data)
 
     if (data.object === 'page') {
-
+        console.log(data)
         data.entry.forEach( entry => {
             let pageID      = entry.id
             let timeOfEvent = entry.time
+
+            console.log(entry.messaging) // Show incoming message
 
             // Loop through all the messages
             entry.messaging.forEach( event => {
