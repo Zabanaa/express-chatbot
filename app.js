@@ -53,7 +53,7 @@ let callSendApi = messageData => {
         method: 'POST',
         json: messageData
 
-      }, (error, response, body) {
+      }, (error, response, body) => {
         if (!error && response.statusCode == 200) {
           console.log("Successfully sent generic message");
         } else {
