@@ -33,11 +33,11 @@ app.post('/webhook', (req, res) => {
             console.log(entry.messaging) // Show incoming message
 
             // Loop through all the messages
-            entry.messaging.forEach( event => {
-                if (event.message) {
-                    receivedMessage(event)
+            entry.messaging.forEach( msg => {
+                if (msg.message) {
+                    receivedMessage(msg.message)
                 } else {
-                    console.log("Webhook received unknown event", event)
+                    console.log("Webhook received unknown event", msg)
                 }
             })
         })
@@ -70,7 +70,7 @@ let sendTextMessage = messageText => {
     callSendApi(messageData)
 }
 
-let receivedMessage = event => console.log(`Message received : ${event.message}`)
+let receivedMessage = message => console.log(`Message received : ${message.text}`)
 
 
 app.listen(port, () => console.log(`server listening on port ${port}`))
