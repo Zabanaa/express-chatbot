@@ -30,7 +30,7 @@ app.post('/webhook', (req, res) => {
             let pageID      = entry.id
             let timeOfEvent = entry.time
 
-            console.log(entry.messaging) // Show incoming message
+            console.log(JSON.stringify(entry.messaging)) // Show incoming message
 
             // Loop through all the messages
             entry.messaging.forEach( incomingMsg => {
